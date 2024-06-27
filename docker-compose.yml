@@ -5,8 +5,6 @@ services:
       POSTGRES_USER: youruser
       POSTGRES_PASSWORD: yourpassword
       POSTGRES_DB: yourdb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
 
@@ -34,6 +32,3 @@ services:
 networks:
   app-network:
     driver: bridge
-
-volumes:
-  postgres_data:

@@ -10,7 +10,7 @@ $ docker compose up -d
  ✔ Container demo-atlas-sql-atlas-1         Started
 
 
-$ docker compose run atlas schema apply --to file:///project/schema.hcl --url postgres://youruser:yourpassword@postgres:5432/yourdb?sslmode=disable --dev-url postgres://youruser:yourpassword@postgres-dev:5432/dev?sslmode=disable --env local --dry-run
+$ docker compose run atlas schema apply --to file:///project/schema.hcl --env local --dry-run
 -- Planned Changes:
 -- Drop schema named "public"
 DROP SCHEMA "public" CASCADE;
@@ -27,7 +27,7 @@ CREATE TABLE "testschema"."users" (
 );
 
 
-$ docker compose run atlas schema apply --to file:///project/schema.hcl --url postgres://youruser:yourpassword@postgres:5432/yourdb?sslmode=disable --dev-url postgres://youruser:yourpassword@postgres-dev:5432/dev?sslmode=disable --env local --auto-approve
+$ docker compose run atlas schema apply --to file:///project/schema.hcl --env local --auto-approve
 -- Planned Changes:
 -- Drop schema named "public"
 DROP SCHEMA "public" CASCADE;
@@ -43,7 +43,7 @@ CREATE TABLE "testschema"."users" (
   PRIMARY KEY ("id")
 );
 
-$ docker compose run atlas schema apply --to file:///project/schema.hcl --url postgres://youruser:yourpassword@postgres:5432/yourdb?sslmode=disable --dev-url postgres://youruser:yourpassword@postgres-dev:5432/dev?sslmode=disable --env local --dry-run
+$ docker compose run atlas schema apply --to file:///project/schema.hcl --env local --dry-run
 Schema is synced, no changes to be made
 ```
 
@@ -52,7 +52,7 @@ Schema is synced, no changes to be made
 If we decide to rename a column, Atlas will ask for instructon : DROP/CREATE or RENAME :
 
 ```sh
-$ docker compose run atlas schema apply --to file:///project/schema_v2.hcl --url postgres://youruser:yourpassword@postgres:5432/yourdb?sslmode=disable --dev-url postgres://youruser:yourpassword@postgres-dev:5432/dev?sslmode=disable --env local --auto-approve
+$ docker compose run atlas schema apply --to file:///project/schema_v2.hcl --env local --auto-approve
 ? Did you rename "users" column from "another" to "renamed":
   ▸ Yes
     No
@@ -61,6 +61,6 @@ $ docker compose run atlas schema apply --to file:///project/schema_v2.hcl --url
 ALTER TABLE "testschema"."users" RENAME COLUMN "another" TO "renamed";
 ```
 
-# References
+## References
 
 https://atlasgo.io/declarative/apply
