@@ -1,6 +1,8 @@
 # Demo for ATLAS
 
-## Empty database demo
+## "Declarative mode" demo
+
+### Database Creation
 
 ```sh
 $ docker compose up -d
@@ -47,7 +49,7 @@ $ docker compose run atlas schema apply --to file:///project/schema.hcl --env lo
 Schema is synced, no changes to be made
 ```
 
-## Renaming a column demo
+### Renaming a column
 
 If we decide to rename a column, Atlas will ask for instructon : DROP/CREATE or RENAME :
 
