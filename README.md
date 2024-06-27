@@ -33,3 +33,6 @@ $ docker compose run atlas schema apply --to file:///project/schema.hcl --url po
 Schema is synced, no changes to be made
 ```
 
+## References
+
+https://atlasgo.io/declarative/apply
