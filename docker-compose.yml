@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  postgres-dev:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: dev
+    networks:
+      - app-network
+
+  atlas:
+    image: arigaio/atlas:latest
+    environment:
+      ATLAS_DATABASE_URL: postgres://youruser:yourpassword@postgres:5432/yourdb?sslmode=disable
+    networks:
+      - app-network
+    volumes:
+      - .:/project/
+    working_dir: /project/
+    ports:
+      - "8080:8080"
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
