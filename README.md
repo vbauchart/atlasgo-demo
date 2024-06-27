@@ -1,6 +1,6 @@
 # Demo for ATLAS
 
-## Runner the demo
+## Empty database demo
 
 ```sh
 $ docker compose up -d
@@ -47,6 +47,20 @@ $ docker compose run atlas schema apply --to file:///project/schema.hcl --url po
 Schema is synced, no changes to be made
 ```
 
-## References
+## Renaming a column demo
+
+If we decide to rename a column, Atlas will ask for instructon : DROP/CREATE or RENAME :
+
+```sh
+$ docker compose run atlas schema apply --to file:///project/schema_v2.hcl --url postgres://youruser:yourpassword@postgres:5432/yourdb?sslmode=disable --dev-url postgres://youruser:yourpassword@postgres-dev:5432/dev?sslmode=disable --env local --auto-approve
+? Did you rename "users" column from "another" to "renamed":
+  ▸ Yes
+    No
+-- Planned Changes:
+-- Rename a column from "another" to "renamed"
+ALTER TABLE "testschema"."users" RENAME COLUMN "another" TO "renamed";
+```
+
+# References
 
 https://atlasgo.io/declarative/apply
